@@ -6,12 +6,13 @@
 <div *ngIf="selectedRoom">
     {{selectedRoom| json}}
 </div>
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
 <div *ngIf="rooms.availableRooms>0" >
-    Room List
-    <!-- {{roomList}} -->
-    <app-rooms-list [rooms]="roomList" 
+    
+    <app-rooms-list [rooms]="roomList" [title]="title"
     (selectedRoom)="selectRoom($event)"></app-rooms-list>
 
 </div>
-<p>The hero's birthday is {{ birthday | date }}</p>
 <button (click)="toggle()" class="btn btn-primary">Toggle</button>
