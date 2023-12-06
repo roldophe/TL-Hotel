@@ -3,21 +3,24 @@
 <div [hidden]="hideRooms">
     number Of Rooms: <div [innerText]="numberOfRooms"></div>
 </div>
-<div *ngIf="rooms.availableRooms>0">
+<div *ngIf="rooms.availableRooms>0" >
     Room List
     <!-- {{roomList}} -->
-    <table>
-        <tr>
-            <th>Index</th>
-            <th>Even/Odd</th>
-            <th>Room Number</th>
-            <th>Room Type</th>
-            <th>Room Price</th>
-            <th>Room Amenities</th>
-            <th>CheckIn-Time</th>
-            <th>CheckOut-Time</th>
-            <th>Rating</th>
-        </tr>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Index</th>
+                <th>Even/Odd</th>
+                <th>Room Number</th>
+                <th>Room Type</th>
+                <th>Room Price</th>
+                <th>Room Amenities</th>
+                <th>CheckIn-Time</th>
+                <th>CheckOut-Time</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        
         <tr [ngClass]="e ? 'even' :'odd'" *ngFor="let room of roomList |slice:0:3; 
         let e = even; let o = odd; 
         let i=index">
@@ -25,7 +28,7 @@
             <td>{{e?"Even":"Odd"}}</td>
             <td>{{room.roomNumber}}</td>
             <td>{{room.roomType}}</td>
-            <td>{{room.price |currency:'EUR'}}</td> <!--If currency is dollar and currency:'EUR'-->
+            <td>{{room.price |currency}}</td> <!--If currency is dollar and currency:'EUR'-->
             <td>{{room.amenities | titlecase}}</td>
             <td>{{room.checkinTime | date:'short' }}</td>
             <td>{{room.checkoutTime | date:'short' }}</td> <!-- https://angular.io/api/common/DatePipe -->

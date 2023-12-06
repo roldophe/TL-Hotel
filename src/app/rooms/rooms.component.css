@@ -1,8 +1,8 @@
 .even{
-    background-color: steelblue ;
-    color: wheat;
+    background-color: steelblue !important;
+    color: white;
 }
 .odd{
-    background-color: brown;
+    background-color: brown !important;
     color: white;
 }
