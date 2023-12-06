@@ -7,6 +7,7 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.css']
 })
 export class RoomsComponent implements OnInit {
+  birthday = new Date(1988, 3, 15);
 
   hotelName = 'TL Hotel';
   numberOfRooms = 10;
@@ -20,7 +21,8 @@ export class RoomsComponent implements OnInit {
       price: 500,
       photos: "https://bowa.com/wp-content/uploads/2015/07/MAY-Potomac-MD-Whole-House-Renovation-Sitting-Room.jpg",
       checkinTime: new Date('11-Nov-2023'),
-      checkoutTime: new Date('11-Nov-2024')
+      checkoutTime: new Date('11-Nov-2024'),
+      rating:4.55
     },
     {
       roomNumber: 101,
@@ -29,7 +31,8 @@ export class RoomsComponent implements OnInit {
       price: 1000,
       photos: "https://th.bing.com/th/id/OIP.YTGQcpOpfSPfAqBj6aTB2wHaE8?rs=1&pid=ImgDetMain",
       checkinTime: new Date('19-Nov-2023'),
-      checkoutTime: new Date('19-Nov-2024')
+      checkoutTime: new Date('19-Nov-2024'),
+      rating:2.46
     },
     {
       roomNumber: 205,
@@ -38,12 +41,13 @@ export class RoomsComponent implements OnInit {
       price: 600,
       photos: "https://th.bing.com/th/id/OIP.tVyVUZKDKZG90vLtbKZwwgHaE8?w=1500&h=1001&rs=1&pid=ImgDetMain",
       checkinTime: new Date('12-Nov-2023'),
-      checkoutTime: new Date('16-Nov-2024')
+      checkoutTime: new Date('16-Nov-2024'),
+      rating:2.34
     },
   ]
 
   constructor() { }
-  room: Room = {
+  rooms: Room = {
     totalRooms: 20,
     availableRooms: 10,
     bookedRooms: 5

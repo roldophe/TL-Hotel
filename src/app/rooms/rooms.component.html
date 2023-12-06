@@ -3,8 +3,7 @@
 <div [hidden]="hideRooms">
     number Of Rooms: <div [innerText]="numberOfRooms"></div>
 </div>
-
-<div *ngIf="room.availableRooms>0">
+<div *ngIf="rooms.availableRooms>0">
     Room List
     <!-- {{roomList}} -->
     <table>
@@ -16,18 +15,25 @@
             <th>Room Price</th>
             <th>Room Amenities</th>
             <th>CheckIn-Time</th>
-            <!-- <th>CheckOut-Time</th> -->
+            <th>CheckOut-Time</th>
+            <th>Rating</th>
         </tr>
-        <tr *ngFor="let room of roomList; let e = even; let o = odd; let i=index">
-            <td>{{i}}</td>
+        <tr [ngClass]="e ? 'even' :'odd'" *ngFor="let room of roomList |slice:0:3; 
+        let e = even; let o = odd; 
+        let i=index">
+            <td>{{i |percent}}</td>
             <td>{{e?"Even":"Odd"}}</td>
             <td>{{room.roomNumber}}</td>
             <td>{{room.roomType}}</td>
-            <td>{{room.price}}</td>
-            <td>{{room.amenities}}</td>
-            <td>{{room.checkinTime}}</td>
-            <!-- <td>{{room.checkoutTime}}</td> -->
+            <td>{{room.price |currency:'EUR'}}</td> <!--If currency is dollar and currency:'EUR'-->
+            <td>{{room.amenities | titlecase}}</td>
+            <td>{{room.checkinTime | date:'short' }}</td>
+            <td>{{room.checkoutTime | date:'short' }}</td> <!-- https://angular.io/api/common/DatePipe -->
+            <td>{{room.rating | number:'1.1-2':'en-us'}}</td> 
+            <!-- number:'1.1-2' It's mean display 2digits after . (2.34) -->
         </tr>
     </table>
+
 </div>
+<p>The hero's birthday is {{ birthday | date }}</p>
 <button (click)="toggle()">Toggle</button>
