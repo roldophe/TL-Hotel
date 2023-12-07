@@ -1,3 +1,4 @@
+import { ContainerComponent } from './container/container.component';
 import { Component, OnInit, ViewChild, ViewContainerRef, AfterViewInit, ElementRef } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
 
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.name.nativeElement.innerText = "TL Hotel";
   }
-
+  constructor(){}
 
   // role = 'Admin';
   //@ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef

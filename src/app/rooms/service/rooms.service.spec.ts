@@ -1,3 +1,4 @@
+import { Room, RoomList } from './../rooms';
 import { TestBed } from '@angular/core/testing';
 
 import { RoomsService } from './rooms.service';

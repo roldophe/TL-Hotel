@@ -8,6 +8,7 @@ import { RoomsService } from './service/rooms.service';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
+
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
   hotelName = 'TL ROOMS';
