@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 .even{
-    background-color: rgb(210, 210, 210);
-    /* color: white; */
+    background-color: rgb(17, 17, 86);
+    color: white ;
 }
 .odd{
-    /* background-color: brown ; */
-    /* color: white; */
+    background-color: brown ;
+    color: white;
 }
