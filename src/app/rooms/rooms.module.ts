@@ -8,6 +8,7 @@ import { RoomBookingComponent } from './room-booking/RoomBookingComponent';
 import { RoomsAddComponent } from './rooms-add/rooms-add.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderModule } from '../header/header.module';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HeaderModule } from '../header/header.module';
     CommonModule,
     RoomsRoutingModule,
     FormsModule,
-    HeaderModule
+    HeaderModule,
+    MatButtonModule
   ]
 })
 export class RoomsModule { }
