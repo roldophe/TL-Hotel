@@ -6,7 +6,7 @@
     {{ successMessage | json }}
   </div>
 
-  <form (ngSubmit)="AddRoom()" #roomForm="ngForm">
+  <form (ngSubmit)="AddRoom(roomForm)" #roomForm="ngForm">
     <div class="form-group">
       <input
         required
