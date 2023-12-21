@@ -9,7 +9,7 @@ export class EmployeeComponent implements OnInit {
   empName: string = 'Jonh';
   constructor() { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    //throw new Error('Method not implemented.');
   }
 
 }

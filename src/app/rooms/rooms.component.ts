@@ -79,6 +79,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       error: (err) => console.log(err)
     });
     this.stream.subscribe((data) => { console.log(data) })
+    
     this.roomsService.getRooms().subscribe(rooms => {
       this.roomList = rooms;
     })
@@ -99,7 +100,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       checkoutTime: new Date('12-Dec-2024'),
       rating: 4.46
     };
-    this.roomsService.editRooom(room).subscribe((data) => {
+    this.roomsService.editRoom(room).subscribe((data) => {
       this.roomList = data;
     });
   }

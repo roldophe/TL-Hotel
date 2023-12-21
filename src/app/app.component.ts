@@ -13,14 +13,14 @@ export class AppComponent implements OnInit {
   @ViewChild('name', { static: true }) name!: ElementRef;
 
   ngOnInit(): void {
-    this.name.nativeElement.innerText = "TL Hotel";
+    //this.name.nativeElement.innerText = "TL Hotel";
   }
   constructor(@Inject(localStorageToken) private localStorage:any){
 
   }
 
   // role = 'Admin';
-  //@ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef
+  // @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef
   // ngAfterViewInit(): void {
   //   const componentRef = this.vcr.createComponent(RoomsComponent);
   //   componentRef.instance.numberOfRooms =50

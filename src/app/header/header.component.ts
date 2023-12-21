@@ -9,6 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   title: string='';
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 }

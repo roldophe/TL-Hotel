@@ -23,10 +23,10 @@ export class RoomsService {
     });
     return this.http.request(request);
   }
-  addRooom(room: RoomList) {
+  addRoom(room: RoomList) {
     return this.http.post<RoomList[]>('/api/rooms', room);
   }
-  editRooom(room: RoomList) {
+  editRoom(room: RoomList) {
     return this.http.put<RoomList[]>(`/api/rooms/${room.roomNumber}`, room);
   }
   delete(id: string) {
