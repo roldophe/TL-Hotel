@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 })
 export class RoomBookingComponent implements OnInit {
   id: number = 0;
-  id$ = this.router.paramMap.pipe(map((params) => params.get('id')));
+  //id$ = this.router.paramMap.pipe(map((params) => params.get('id')));
   
   constructor(private router: ActivatedRoute) {}
   
@@ -19,6 +19,6 @@ export class RoomBookingComponent implements OnInit {
     //   console.log(param)
     //   this.id = param['id'];
     // }))
-    // this.id = this.router.snapshot.params['id'];
+    this.id = this.router.snapshot.params['id'];
   }
 }

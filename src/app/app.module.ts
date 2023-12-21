@@ -23,6 +23,9 @@ import { RoomBookingComponent } from './rooms/room-booking/RoomBookingComponent'
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HoverDirective } from './hover.directive';
+import { EmailValidatorDirective } from './emailvalidator/email-validator.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,9 @@ import { FormsModule } from '@angular/forms';
     NotFoundComponent,
     RoomBookingComponent,
     RoomsAddComponent,
+    LoginComponent,
+    HoverDirective,
+    EmailValidatorDirective,
   ],
   imports: [
     BrowserModule,
