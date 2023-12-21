@@ -28,7 +28,15 @@ export class RoomsAddComponent implements OnInit {
       .addRoom(this.room)
       .subscribe((data) => {
         this.successMessage = 'Room added successfully';
-        roomsForm.reset();
+        roomsForm.resetForm({
+          roomType: '',
+          amenities: '',
+          price: 0,
+          photos: '',
+          checkinTime: new Date(),
+          checkoutTime: new Date(),
+          rating: 0,
+        });
     });
   }
 }
