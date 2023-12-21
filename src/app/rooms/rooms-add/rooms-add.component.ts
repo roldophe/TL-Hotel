@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './rooms-add.component.html',
   styleUrls: ['./rooms-add.component.css'],
 })
-export class RoomsAddComponent implements OnInit{
+export class RoomsAddComponent implements OnInit {
   room: RoomList = {
     roomType: '',
     amenities: '',
@@ -18,14 +18,17 @@ export class RoomsAddComponent implements OnInit{
     checkoutTime: new Date(),
     rating: 0,
   };
-  constructor(private roomService:RoomsService) {}
+  constructor(private roomService: RoomsService) {}
   ngOnInit(): void {
     console.log(this.room);
   }
-  successMessage:string = '';
-  AddRoom(roomForm:NgForm){
-    this.roomService.addRoom(this.room)
-    .subscribe((data) => this.successMessage = 'Room added successfully');
-      roomForm.reset();
+  successMessage: string = '';
+  AddRoom(roomsForm: NgForm) {
+    this.roomService
+      .addRoom(this.room)
+      .subscribe((data) => {
+        this.successMessage = 'Room added successfully';
+        roomsForm.reset();
+    });
   }
 }
