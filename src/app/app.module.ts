@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FordbiddenComponent } from './utils/fordbidden/fordbidden.component';
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailvalidator/email-validator.directive';
+import { RouteConfigToken } from './services/routeConfig.service';
 // import { RoomsModule } from './rooms/rooms.module';
 @NgModule({
   declarations: [
@@ -34,12 +35,12 @@ import { EmailValidatorDirective } from './emailvalidator/email-validator.direct
     EmailValidatorDirective,
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     // RoomsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-   
+
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -52,8 +53,17 @@ import { EmailValidatorDirective } from './emailvalidator/email-validator.direct
     {
       provide: APP_SERVICE_CONFIG,
       useValue: APP_CONFIG,
-    }
+    },
+    {
+      provide: RouteConfigToken,
+      useValue: { title: 'Home' },
+    },
+    // {
+    //   provide:HTTP_INTERCEPTORS,
+    //   useClass:RequestInterceptor,
+    //   multi: true
+    // },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

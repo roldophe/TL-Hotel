@@ -2,6 +2,7 @@ import { ContainerComponent } from './container/container.component';
 import { Component, OnInit, ViewChild, ViewContainerRef, AfterViewInit, ElementRef, Inject } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
 import { localStorageToken } from './localstorage.token';
+import { ConfigService } from './services/config.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     //this.name.nativeElement.innerText = "TL Hotel";
   }
-  constructor(@Inject(localStorageToken) private localStorage:any){
+  constructor(@Inject(localStorageToken) private localStorage:any,
+  private configService:ConfigService){
 
   }
 

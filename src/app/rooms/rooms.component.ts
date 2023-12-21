@@ -4,6 +4,7 @@ import { Room, RoomList } from './rooms';
 import { RoomsService } from './service/rooms.service';
 import { Observable } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-rooms',
@@ -32,7 +33,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
-  constructor(private roomsService: RoomsService) { }
+  constructor(private roomsService: RoomsService,
+    private configService:ConfigService) { }
 
   ngAfterViewChecked(): void {
     //this.headerComponent.title ="Room View"

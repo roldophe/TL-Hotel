@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingComponent } from './booking.component';
+import { ConfigService } from '../services/config.service';
 
 
 @NgModule({
@@ -14,4 +15,6 @@ import { BookingComponent } from './booking.component';
     BookingRoutingModule
   ]
 })
-export class BookingModule { }
+export class BookingModule { 
+  constructor(private configService:ConfigService){}
+}
