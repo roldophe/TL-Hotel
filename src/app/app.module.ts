@@ -16,7 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailvalidator/email-validator.directive';
@@ -48,6 +48,7 @@ import { RouteConfigToken } from './services/routeConfig.service';
     MatListModule,
     MatCardModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
