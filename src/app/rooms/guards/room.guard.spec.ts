@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateChildFn } from '@angular/router';
 
-import { roomGuard } from './room.guard';
+import { RoomGuard } from './room.guard';
 
 describe('roomGuard', () => {
   const executeGuard: CanActivateChildFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => roomGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => RoomGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
