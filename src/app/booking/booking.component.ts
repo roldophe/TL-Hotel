@@ -21,8 +21,7 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
-      bookingId: [''],
-      roomId: [''],
+      roomId: new FormControl({value:'2',disabled:true}), //new FormControl('1') => Can change value
       guestEmail: [''],
       checkinDate: [''],
       checkoutDate: [''],
@@ -31,11 +30,15 @@ export class BookingComponent implements OnInit {
       bookingDate: [''],
       mobileNumber: [''],
       guestName: [''],
-      guestAddress: [''],
-      guestCity: [''],
-      guestState: [''],
-      guestCountry: [''],
-      guestZipCode: [''],
+      address: this.fb.group({
+        addressLine1: [''],
+        addressLine2: [''],
+        city: [''],
+        state: [''],
+        country: [''],
+        zipCode: [''],
+      }),
+
       guestCount: [''],
     });
   }
@@ -48,5 +51,8 @@ export class BookingComponent implements OnInit {
       : this.email.hasError('email')
       ? 'Not a valid email'
       : '';
+  }
+  addBooking() {
+    console.log('addBooking', this.bookingForm.getRawValue()); // TODO: check all fields with valid and disabled values value
   }
 }
