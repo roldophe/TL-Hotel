@@ -14,6 +14,7 @@ import {
   styleUrls: ['./booking.component.css'],
 })
 export class BookingComponent implements OnInit {
+
   bookingForm!: FormGroup;
   get guests() {
     return this.bookingForm.get('guests') as FormArray;
@@ -80,5 +81,9 @@ export class BookingComponent implements OnInit {
     if(this.bookingForm.get('passport')) {
       this.bookingForm.removeControl('passport');
     }
+  }
+
+  removeGuest(i: number) {
+    this.guests.removeAt(i);
   }
 }

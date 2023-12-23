@@ -15,19 +15,26 @@
   class="form-container px-4"
 >
   <div>
-    <button (click)="addPassport()" 
-      mat-raised-button color="primary" type="button">
+    <button
+      (click)="addPassport()"
+      mat-raised-button
+      color="primary"
+      type="button"
+    >
       Add Passport
     </button>
-    <button (click)="deletePassport()" 
-      mat-raised-button color="primary" type="button">
+    <button
+      (click)="deletePassport()"
+      mat-raised-button
+      color="primary"
+      type="button"
+    >
       Delete Passport
     </button>
   </div>
-  <div>
-  </div>
+  <div></div>
   <!-- check if user clicked button Add Passport, it will be show input passport-->
-  <mat-form-field *ngIf="bookingForm.get('passport')"> 
+  <mat-form-field *ngIf="bookingForm.get('passport')">
     <mat-label>Passport</mat-label>
     <input
       matInput
@@ -37,7 +44,8 @@
     />
   </mat-form-field>
 
-  <mat-form-field> <mat-label>Room ID</mat-label>
+  <mat-form-field>
+    <mat-label>Room ID</mat-label>
     <input
       matInput
       type="text"
@@ -46,7 +54,8 @@
     />
   </mat-form-field>
 
-  <mat-form-field> <mat-label>Guest Name</mat-label>
+  <mat-form-field>
+    <mat-label>Guest Name</mat-label>
     <input
       matInput
       type="text"
@@ -55,7 +64,8 @@
     />
   </mat-form-field>
 
-  <mat-form-field> <mat-label>Enter your email</mat-label>
+  <mat-form-field>
+    <mat-label>Enter your email</mat-label>
     <input
       matInput
       type="email"
@@ -66,7 +76,8 @@
     <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> [formControl]="email" -->
   </mat-form-field>
 
-  <mat-form-field>  <mat-label>Booking Status</mat-label>
+  <mat-form-field>
+    <mat-label>Booking Status</mat-label>
     <input
       matInput
       type="text"
@@ -75,7 +86,8 @@
     />
   </mat-form-field>
 
-  <mat-form-field> <mat-label>Booking Amount</mat-label>
+  <mat-form-field>
+    <mat-label>Booking Amount</mat-label>
     <input
       matInput
       type="number"
@@ -84,7 +96,8 @@
     />
   </mat-form-field>
 
-  <mat-form-field>  <mat-label>Booking Date</mat-label>
+  <mat-form-field>
+    <mat-label>Booking Date</mat-label>
     <input
       matInput
       [matDatepicker]="bookingDatePicker"
@@ -98,7 +111,8 @@
     <mat-datepicker #bookingDatePicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>  <mat-label>CheckIn Date</mat-label>
+  <mat-form-field>
+    <mat-label>CheckIn Date</mat-label>
     <input
       matInput
       [matDatepicker]="checkinDatePicker"
@@ -112,7 +126,8 @@
     <mat-datepicker #checkinDatePicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field> <mat-label>Checkout Date</mat-label>
+  <mat-form-field>
+    <mat-label>Checkout Date</mat-label>
     <input
       matInput
       [matDatepicker]="checkoutDatePicker"
@@ -126,7 +141,8 @@
     <mat-datepicker #checkoutDatePicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field> <mat-label>Mobile Number</mat-label>
+  <mat-form-field>
+    <mat-label>Mobile Number</mat-label>
     <input
       matInput
       type="number"
@@ -135,7 +151,8 @@
     />
   </mat-form-field>
   <div>
-    <button (click)="addGuest()"
+    <button
+      (click)="addGuest()"
       mat-raised-button
       color="primary"
       type="button"
@@ -167,6 +184,16 @@
                 placeholder="Guest Age"
               />
             </mat-form-field>
+          </div>
+          <div>
+            <button
+              (click)="removeGuest(i)"
+              mat-raised-button
+              color="primary"
+              type="button"
+            >
+              Remove Guest
+            </button>
           </div>
         </div>
       </mat-expansion-panel>
@@ -215,7 +242,7 @@
       </mat-form-field>
     </mat-expansion-panel>
   </mat-accordion>
-<hr />
+  <hr />
   <div>
     <button mat-raised-button color="primary">Book Room</button>
   </div>
