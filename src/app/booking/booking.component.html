@@ -9,52 +9,171 @@
 </div>
 <hr />
 
-<form [formGroup]="bookingForm" class="form-container px-4" (ngSubmit)="addBooking()">
-  <mat-form-field>
-    <input matInput type="text" placeholder="Room ID" formControlName="roomId" />
+<form
+  (ngSubmit)="addBooking()"
+  [formGroup]="bookingForm"
+  class="form-container px-4"
+>
+  <div>
+    <button (click)="addPassport()" 
+      mat-raised-button color="primary" type="button">
+      Add Passport
+    </button>
+    <button (click)="deletePassport()" 
+      mat-raised-button color="primary" type="button">
+      Delete Passport
+    </button>
+  </div>
+  <div>
+  </div>
+  <!-- check if user clicked button Add Passport, it will be show input passport-->
+  <mat-form-field *ngIf="bookingForm.get('passport')"> 
+    <mat-label>Passport</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Passport"
+      formControlName="passport"
+    />
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="text" placeholder="Guest Name" formControlName="guestName" />
+  <mat-form-field> <mat-label>Room ID</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Room ID"
+      formControlName="roomId"
+    />
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="email" placeholder="Enter your email" formControlName="guestEmail" required />
+  <mat-form-field> <mat-label>Guest Name</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Guest Name"
+      formControlName="guestName"
+    />
+  </mat-form-field>
+
+  <mat-form-field> <mat-label>Enter your email</mat-label>
+    <input
+      matInput
+      type="email"
+      placeholder="Enter your email"
+      formControlName="guestEmail"
+      required
+    />
     <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> [formControl]="email" -->
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="text" placeholder="Booking Status" formControlName="bookingStatus" />
+  <mat-form-field>  <mat-label>Booking Status</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Booking Status"
+      formControlName="bookingStatus"
+    />
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="number" placeholder="Booking Amount" formControlName="bookingAmount" />
+  <mat-form-field> <mat-label>Booking Amount</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Booking Amount"
+      formControlName="bookingAmount"
+    />
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="bookingDatePicker" placeholder="Booking Date" formControlName="bookingDate" />
-    <mat-datepicker-toggle matSuffix [for]="bookingDatePicker"></mat-datepicker-toggle>
+  <mat-form-field>  <mat-label>Booking Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="bookingDatePicker"
+      placeholder="Booking Date"
+      formControlName="bookingDate"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="bookingDatePicker"
+    ></mat-datepicker-toggle>
     <mat-datepicker #bookingDatePicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="checkinDatePicker" placeholder="CheckIn Date" formControlName="checkinDate" />
-    <mat-datepicker-toggle matSuffix [for]="checkinDatePicker"></mat-datepicker-toggle>
+  <mat-form-field>  <mat-label>CheckIn Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="checkinDatePicker"
+      placeholder="CheckIn Date"
+      formControlName="checkinDate"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="checkinDatePicker"
+    ></mat-datepicker-toggle>
     <mat-datepicker #checkinDatePicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="checkoutDatePicker" placeholder="Checkout Date" formControlName="checkoutDate" />
-    <mat-datepicker-toggle matSuffix [for]="checkoutDatePicker"></mat-datepicker-toggle>
+  <mat-form-field> <mat-label>Checkout Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="checkoutDatePicker"
+      placeholder="Checkout Date"
+      formControlName="checkoutDate"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="checkoutDatePicker"
+    ></mat-datepicker-toggle>
     <mat-datepicker #checkoutDatePicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="number" placeholder="Mobile Number" formControlName="mobileNumber" />
+  <mat-form-field> <mat-label>Mobile Number</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Mobile Number"
+      formControlName="mobileNumber"
+    />
   </mat-form-field>
+  <div>
+    <button (click)="addGuest()"
+      mat-raised-button
+      color="primary"
+      type="button"
+    >
+      Add Guest
+    </button>
+  </div>
+  <div formArrayName="guests">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Guests</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngFor="let guest of guests.controls; let i = index">
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="guestName"
+                placeholder="Guest Name"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                type="number"
+                matInput
+                formControlName="age"
+                placeholder="Guest Age"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
   <mat-accordion formGroupName="address" class="example-headers-align">
-    <mat-expansion-panel fxFlexFill>
-      
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title> Address </mat-panel-title>
       </mat-expansion-panel-header>
@@ -76,7 +195,12 @@
 
       <mat-form-field>
         <mat-label>Country</mat-label>
-        <input matInput type="text" value="Cambodia" formControlName="country" />
+        <input
+          matInput
+          type="text"
+          value="Cambodia"
+          formControlName="country"
+        />
         <!-- <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint> -->
       </mat-form-field>
 
@@ -89,10 +213,9 @@
         <mat-label>Zip Code</mat-label>
         <input matInput type="number" formControlName="zipCode" />
       </mat-form-field>
-
     </mat-expansion-panel>
   </mat-accordion>
-  <hr />
+<hr />
   <div>
     <button mat-raised-button color="primary">Book Room</button>
   </div>
