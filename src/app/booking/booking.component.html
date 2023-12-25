@@ -43,16 +43,17 @@
       formControlName="passport"
     />
   </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Room ID</mat-label>
-    <input
-      matInput
-      type="text"
-      placeholder="Room ID"
-      formControlName="roomId"
-    />
-  </mat-form-field>
+<mat-form-field>
+  <mat-label>Room ID</mat-label>
+  <input matInput type="text" placeholder="Room ID" formControlName="roomId" />
+  <mat-error *ngIf="
+      bookingForm
+        .get(['roomId'])
+        ?.hasError('required')
+    ">
+    RoomID is <strong>required!</strong> 
+  </mat-error>
+</mat-form-field>
 
   <mat-form-field>
     <mat-label>Guest Name</mat-label>
