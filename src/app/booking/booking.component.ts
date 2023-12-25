@@ -43,7 +43,15 @@ export class BookingComponent implements OnInit {
         bookingAmount: [''],
         bookingDate: [''],
         mobileNumber: [''],
-        guestName: ['', [Validators.required, Validators.minLength(5), CustomValidator.validateName,CustomValidator.ValidateSpecialChar('*')]],
+        guestName: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(5),
+            CustomValidator.validateName,
+            CustomValidator.ValidateSpecialChar('*'),
+          ],
+        ],
         address: this.fb.group({
           addressLine1: ['', { validators: [Validators.required] }],
           addressLine2: [''],
@@ -59,9 +67,7 @@ export class BookingComponent implements OnInit {
           }),
         ]),
       },
-      {
-        updateOn: 'blur',
-      },
+      { updateOn: 'blur', validators: [CustomValidator.validateDate] },
     );
 
     ///this.getBookingData();
