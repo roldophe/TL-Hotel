@@ -63,6 +63,7 @@
       placeholder="Guest Name"
       formControlName="guestName"
     />
+    <div>{{bookingForm.get('guestName')?.errors|json}}</div>
     <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">
       Guest Name should be minimum 5 characters!
     </mat-error>

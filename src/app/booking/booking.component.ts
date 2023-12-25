@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { CustomValidator } from './validators/custom-validator';
 
 @Component({
   selector: 'app-booking',
@@ -22,8 +23,7 @@ export class BookingComponent implements OnInit {
   constructor(
     private configService: ConfigService,
     private fb: FormBuilder,
-    private bookingService:BookingService
-     
+    private bookingService: BookingService,
   ) {}
 
   ngOnInit(): void {
@@ -35,22 +35,15 @@ export class BookingComponent implements OnInit {
         ),
         guestEmail: [
           '',
-          {
-            validators: [Validators.required, Validators.email],
-            updateOn: 'blur',
-          },
+          { validators: [Validators.required, Validators.email] },
         ],
         checkinDate: [''],
         checkoutDate: [''],
         bookingStatus: [''],
         bookingAmount: [''],
         bookingDate: [''],
-        mobileNumber: ['', { updateOn: 'blur' }],
-        guestName: [
-          '',
-          
-          [Validators.required, Validators.minLength(5)],{ updateOn: 'blur' },
-        ],
+        mobileNumber: [''],
+        guestName: ['', [Validators.required, Validators.minLength(5), CustomValidator.validateName,CustomValidator.ValidateSpecialChar('*')]],
         address: this.fb.group({
           addressLine1: ['', { validators: [Validators.required] }],
           addressLine2: [''],
@@ -71,13 +64,12 @@ export class BookingComponent implements OnInit {
       },
     );
 
-   
     ///this.getBookingData();
 
     this.bookingForm.valueChanges.subscribe((data) => {
       console.log(data);
-      this.bookingService.bookRoom(data).subscribe(data => {});
-    }); 
+      this.bookingService.bookRoom(data).subscribe((data) => {});
+    });
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -92,9 +84,7 @@ export class BookingComponent implements OnInit {
   addBooking() {
     console.log('addBooking', this.bookingForm.getRawValue()); // TODO: check all fields with valid and disabled values value
     this.bookingForm.reset({
-      roomId: new FormControl(
-        { value: '2', disabled: true }
-      ), //new FormControl('1') => Can change value
+      roomId: new FormControl({ value: '2', disabled: true }), //new FormControl('1') => Can change value
       guestEmail: '',
       checkinDate: '',
       checkoutDate: '',
@@ -164,7 +154,7 @@ export class BookingComponent implements OnInit {
           guestName: '',
           age: '',
         }),
-      ])
+      ]),
     });
   }
 }
