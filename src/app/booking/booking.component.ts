@@ -26,27 +26,27 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
-      roomId: new FormControl({ value: '2', disabled: true }), //new FormControl('1') => Can change value
-      guestEmail: [''],
+      roomId: new FormControl({ value: '2', disabled: true },{validators:[Validators.required]}), //new FormControl('1') => Can change value
+      guestEmail: ['',[Validators.required, Validators.email]],
       checkinDate: [''],
       checkoutDate: [''],
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
       mobileNumber: [''],
-      guestName: [''],
+      guestName: ['',[Validators.required,Validators.minLength(5)]],
       address: this.fb.group({
-        addressLine1: [''],
+        addressLine1: ['',{validators:[Validators.required]}],
         addressLine2: [''],
         city: [''],
         state: [''],
-        country: [''],
+        country: ['',{validators:[Validators.required]}],
         zipCode: [''],
       }),
       guests: this.fb.array([
         this.fb.group({
-          guestName: [''],
-          age: new FormControl(''),
+          guestName: ['',{validators:[Validators.required]}],
+          age: ['',{validators:[Validators.required]}],
         }),
       ]),
       guestCount: [''],
@@ -64,6 +64,32 @@ export class BookingComponent implements OnInit {
   }
   addBooking() {
     console.log('addBooking', this.bookingForm.getRawValue()); // TODO: check all fields with valid and disabled values value
+    this.bookingForm.reset({
+      roomId: new FormControl({ value: '2', disabled: true },{validators:[Validators.required]}), //new FormControl('1') => Can change value
+      guestEmail:'',
+      checkinDate: '',
+      checkoutDate: '',
+      bookingStatus:'',
+      bookingAmount:'',
+      bookingDate:'',
+      mobileNumber: '',
+      guestName: '',
+      address: this.fb.group({
+        addressLine1: '',
+        addressLine2:'',
+        city:'',
+        state: '',
+        country: '',
+        zipCode: '',
+      }),
+      guests: this.fb.array([
+        this.fb.group({
+          guestName: '',
+          age: '',
+        }),
+      ]),
+      guestCount: '',
+    })
   }
 
   addGuest() {

@@ -62,6 +62,9 @@
       placeholder="Guest Name"
       formControlName="guestName"
     />
+    <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">
+      Guest Name should be minimum 5 characters!
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -175,6 +178,16 @@
                 formControlName="guestName"
                 placeholder="Guest Name"
               />
+
+              <mat-error
+                *ngIf="
+                  bookingForm
+                    .get(['guests', i, 'guestName'])
+                    ?.hasError('required')
+                "
+              >
+                Guest Name is <strong>required!</strong>
+              </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input
@@ -183,6 +196,15 @@
                 formControlName="age"
                 placeholder="Guest Age"
               />
+              <mat-error
+                *ngIf="
+                  bookingForm
+                    .get(['guests', i, 'age'])
+                    ?.hasError('required')
+                "
+              >
+                Guest Age is <strong>required!</strong>
+              </mat-error>
             </mat-form-field>
           </div>
           <div>
@@ -208,6 +230,11 @@
       <mat-form-field>
         <mat-label>AddressLine1</mat-label>
         <input matInput formControlName="addressLine1" />
+        <mat-error
+          *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')"
+        >
+          AddressLine1 is <strong>required!</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -228,6 +255,11 @@
           value="Cambodia"
           formControlName="country"
         />
+        <mat-error
+          *ngIf="bookingForm.get('address.country')?.hasError('required')"
+        >
+          Country is <strong>required!</strong>
+        </mat-error>
         <!-- <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint> -->
       </mat-form-field>
 
