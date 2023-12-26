@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailvalidator/email-validator.directive';
 import { RouteConfigToken } from './services/routeConfig.service';
+import { GlobalErrorHandler } from './errorhandler.service';
 // import { RoomsModule } from './rooms/rooms.module';
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { RouteConfigToken } from './services/routeConfig.service';
     //   useClass:RequestInterceptor,
     //   multi: true
     // },
+    {provide: ErrorHandler, useClass:GlobalErrorHandler},
   ],
   bootstrap: [AppComponent],
 })
