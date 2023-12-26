@@ -14,7 +14,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { BookingGuard } from './guards/booking.guard';
 @NgModule({
   declarations: [BookingComponent],
   imports: [
