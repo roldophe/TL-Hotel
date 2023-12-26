@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommentComponent } from './comment.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('CommentComponent', () => {
   let component: CommentComponent;
@@ -8,7 +11,16 @@ describe('CommentComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CommentComponent]
+      declarations: [CommentComponent],
+      imports:[HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            paramMap: of({ get: () => 'mockId' }),
+          },
+        },
+      ],
     });
     fixture = TestBed.createComponent(CommentComponent);
     component = fixture.componentInstance;
