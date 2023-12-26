@@ -1,23 +1,30 @@
 <body class="container">
-    <!-- <h1>Welcome to {{hotelName}}</h1>
-    <app-header></app-header>
+  {{ priceFilter.value | json }}
+  <div>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Price"
+      [formControl]="priceFilter"
+    />
+  </div>
 
-    <div [hidden]="hideRooms">
-        number Of Rooms: <div [innerText]="numberOfRooms"></div>
-    </div> -->
-
-    <!-- <div *ngIf="selectedRoom">
-        {{selectedRoom| json}}
-    </div>
-     -->
-    <router-outlet></router-outlet>
-
-    <div *ngIf="rooms.availableRooms>0" >
-        <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
-    </div>
-
-    <!-- <button (click)="toggle()">Toggle</button> -->
+  <div class="mt-3">
     <button class="btn btn-success" routerLink="add">Add Room</button>
-    <!-- <button (click)="editRoom()">Edit Room</button> -->
-    <!-- <button (click)="deleteRoom()">Delete Room</button> -->
+  </div>
+  <router-outlet></router-outlet>
+
+  <div *ngIf="rooms$ | async as rooms">
+    <app-rooms-list
+      [rooms]="rooms"
+      [price]="priceFilter.value ?? 0"
+      [title]="title"
+      (selectedRoom)="selectRoom($event)"
+    ></app-rooms-list>
+  </div>
+
+  <!-- <button (click)="toggle()">Toggle</button> -->
+
+  <!-- <button (click)="editRoom()">Edit Room</button> -->
+  <!-- <button (click)="deleteRoom()">Delete Room</button> -->
 </body>

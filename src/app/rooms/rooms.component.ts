@@ -1,29 +1,51 @@
 import { HeaderComponent } from './../header/header.component';
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { RoomsService } from './service/rooms.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, map, of } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import { ConfigService } from '../services/config.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.css']
+  styleUrls: ['./rooms.component.css'],
 })
-
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
-
+export class RoomsComponent
+  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
+{
   hotelName = 'TL ROOMS';
   numberOfRooms = 10;
-  totaBytes = 0;
+  totalBytes = 0;
   hideRooms = false;
 
-  selectedRoom !: RoomList;
+  subscription!: Subscription;
+  error: string = '';
+  error$ = new Subject<string>();
+
+  getError$ = this.error$.asObservable();
+  priceFilter = new FormControl(0);
+
+  rooms$ = this.roomsService.getRooms().pipe(
+    catchError((err) => {
+      this.error$.next(err.message);
+      return of([]);
+    }),
+  );
+
+  roomsCount$ = this.rooms$.pipe(map((rooms) => rooms.length));
+  selectedRoom!: RoomList;
   roomList: RoomList[] = [];
 
-
-  stream = new Observable(observer => {
+  stream = new Observable((observer) => {
     observer.next('user1');
     observer.next('user2');
     observer.next('user3');
@@ -33,14 +55,19 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
-  constructor(private roomsService: RoomsService,
-    private configService:ConfigService) { }
+  constructor(
+    private roomsService: RoomsService,
+    private configService: ConfigService,
+  ) {
+    
+    console.log("this.rooms$",this.rooms$)
+  }
 
   ngAfterViewChecked(): void {
     //this.headerComponent.title ="Room View"
   }
   ngAfterViewInit(): void {
-    this.headerComponent.title = "Room View"
+    this.headerComponent.title = 'Room View';
   }
   ngDoCheck(): void {
     // this.headerComponent.title ="Room View"
@@ -49,8 +76,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   rooms: Room = {
     totalRooms: 20,
     availableRooms: 10,
-    bookedRooms: 5
-  }
+    bookedRooms: 5,
+  };
   title = 'Room List';
 
   ngOnInit(): void {
@@ -66,41 +93,44 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
           break;
         }
         case HttpEventType.DownloadProgress: {
-          this.totaBytes += event.loaded;
+          this.totalBytes += event.loaded;
           break;
         }
         case HttpEventType.Response: {
-          console.log(event.body)
+          console.log(event.body);
         }
       }
-    })
+    });
 
     this.stream.subscribe({
       next: (value) => console.log(value),
       complete: () => console.log('complete'),
-      error: (err) => console.log(err)
+      error: (err) => console.log(err),
     });
-    this.stream.subscribe((data) => { console.log(data) })
-    
-    this.roomsService.getRooms().subscribe(rooms => {
+    this.stream.subscribe((data) => {
+      console.log(data);
+    });
+
+    this.roomsService.getRooms().subscribe((rooms) => {
       this.roomList = rooms;
-    })
+    });
   }
 
   toggle() {
-    this.hideRooms = !this.hideRooms
+    this.hideRooms = !this.hideRooms;
     this.title = 'Room List';
   }
   editRoom() {
     const room: RoomList = {
       roomNumber: '2',
-      roomType: "Standard Room",
-      amenities: "Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen",
+      roomType: 'Standard Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
       price: 56000,
-      photos: "https://th.bing.com/th/id/OIP.YTGQcpOpfSPfAqBj6aTB2wHaE8?rs=1&pid=ImgDetMain",
+      photos:
+        'https://th.bing.com/th/id/OIP.YTGQcpOpfSPfAqBj6aTB2wHaE8?rs=1&pid=ImgDetMain',
       checkinTime: new Date('12-Dec-2023'),
       checkoutTime: new Date('12-Dec-2024'),
-      rating: 4.46
+      rating: 4.46,
     };
     this.roomsService.editRoom(room).subscribe((data) => {
       this.roomList = data;
@@ -109,7 +139,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   deleteRoom() {
     this.roomsService.delete('3').subscribe((data) => {
       this.roomList = data;
-    })
+    });
   }
   selectRoom(room: RoomList) {
     // console.log(room)
@@ -118,15 +148,16 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   addRoom() {
     const room: RoomList = {
       roomNumber: '7',
-      roomType: "Duluxe Room",
-      amenities: "Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen",
+      roomType: 'Duluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
       price: 14000,
-      photos: "https://th.bing.com/th/id/OIP.YTGQcpOpfSPfAqBj6aTB2wHaE8?rs=1&pid=ImgDetMain",
+      photos:
+        'https://th.bing.com/th/id/OIP.YTGQcpOpfSPfAqBj6aTB2wHaE8?rs=1&pid=ImgDetMain',
       checkinTime: new Date('12-Dec-2023'),
       checkoutTime: new Date('12-Dec-2024'),
-      rating: 4.46
+      rating: 4.46,
     };
     //this.roomList.push(room);
-    this.roomList = [...this.roomList, room]
+    this.roomList = [...this.roomList, room];
   }
 }

@@ -15,7 +15,7 @@
         </tr>
     </thead>
 
-    <tr [ngClass]="e ? 'even' :'odd'" *ngFor="let room of rooms 
+    <tr [ngClass]="e ? 'even' :'odd'" *ngFor="let room of rooms | filter:price;
         let e = even; let o = odd; 
         let i=index">
         <td>{{i |percent}}</td>
