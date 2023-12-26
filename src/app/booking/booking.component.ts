@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidator } from './validators/custom-validator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-booking',
@@ -24,13 +25,15 @@ export class BookingComponent implements OnInit {
     private configService: ConfigService,
     private fb: FormBuilder,
     private bookingService: BookingService,
+    private route:ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    const roomId = this.route.snapshot.paramMap.get('roomId');
     this.bookingForm = this.fb.group(
       {
         roomId: new FormControl(
-          { value: '2', disabled: true },
+          { value: roomId, disabled: true },
           { validators: [Validators.required] },
         ),
         guestEmail: [
