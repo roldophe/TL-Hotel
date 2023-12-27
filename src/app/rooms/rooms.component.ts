@@ -67,7 +67,7 @@ export class RoomsComponent
     //this.headerComponent.title ="Room View"
   }
   ngAfterViewInit(): void {
-    this.headerComponent.title = 'Room View';
+    // this.headerComponent.title = 'Room View';
   }
   ngDoCheck(): void {
     // this.headerComponent.title ="Room View"

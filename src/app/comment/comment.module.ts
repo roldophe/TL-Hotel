@@ -1,3 +1,4 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     FormsModule,
     MatTableModule,
+    MatSnackBarModule
   ],
 })
 export class CommentModule {}

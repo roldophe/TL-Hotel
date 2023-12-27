@@ -3,6 +3,7 @@ import { CommentService } from './comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { pluck } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 // export interface PeriodicElement {
 //   name: string;
 //   position: number;
@@ -31,11 +32,12 @@ export class CommentComponent implements OnInit {
   comment$ = this.activatedRoute.data.pipe(pluck('comments'));
 
   dataSource!: MatTableDataSource<any>; // Add the "!" operator to indicate it will be initialized in the constructor
-  displayedColumns: string[] = ['postId', 'id', 'name', 'email', 'body'];
+  displayedColumns: string[] = ['postId', 'id', 'name', 'email'];
 
   constructor(
     private commentService: CommentService,
     private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     this.dataSource = new MatTableDataSource<any>([]);
   }
@@ -61,5 +63,10 @@ export class CommentComponent implements OnInit {
   applyFilter() {
     const filterValue = this.searchText.trim().toLowerCase();
     this.dataSource.filter = filterValue;
+    if (this.dataSource.filteredData.length === 0) {
+      this.snackBar.open('Search result not found. Input is required.', 'Close', {
+        duration: 5000, // Duration in milliseconds
+      });
+    }
   }
 }

@@ -23,6 +23,6 @@ export class EmailValidatorDirective implements Validator {
     if (value.includes('test')) {
       return { invalidEmail: true };
     }
-    return null;
+    return { invalidEmail: false };
   }
 }

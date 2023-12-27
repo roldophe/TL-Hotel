@@ -1,22 +1,37 @@
 table {
-    width: 100%;
+  width: 100%;
 }
 
 .search-container {
-    position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .search-input {
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 30px;
-    padding: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+  flex: 1; /* Added */
+  height: 30px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 .search-input:focus {
-    border: 1px solid #323a93;
+  border: 1px solid #323a93;
 }
+
+@media screen and (max-width: 600px) {
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .table-container{
+    overflow-x: auto;
+  }
+}
+.table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    
+  }
