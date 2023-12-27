@@ -22,6 +22,7 @@ import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailvalidator/email-validator.directive';
 import { RouteConfigToken } from './services/routeConfig.service';
 import { GlobalErrorHandler } from './errorhandler.service';
+import { UserComponent } from './user/user.component';
 // import { RoomsModule } from './rooms/rooms.module';
 @NgModule({
   declarations: [

@@ -22,6 +22,7 @@ const routes: Routes = [
     // canActivate: [LoginGuard],
   },
   { path: 'comment', loadChildren: () => import('./comment/comment.module').then(m => m.CommentModule) },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: '**', component: NotFoundComponent }, // Optional: Handle invalid routes
 ];
 

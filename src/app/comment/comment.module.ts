@@ -7,6 +7,7 @@ import { CommentComponent } from './comment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [CommentComponent],
@@ -16,7 +17,8 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
 })
 export class CommentModule {}
