@@ -1,36 +1,4 @@
-<!-- <div class="container">
-    <div class="input-group py-2 mt-2">
-        <input type="search" class="form-control" placeholder="Search" aria-label="Search"
-            aria-describedby="search-addon" [(ngModel)]="searchText" (blur)="clearSearch()" (focus)="showDropdown()" />
-        <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>Search</button>
-    </div>
-    <div class="dropdown" >
 
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered table-sm">
-                <thead>
-                    <tr class="text-center">
-                        <th>PostID</th>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Body</th>
-                    </tr>
-                </thead>
-                <tbody *ngIf="showDropdownFlag">
-                    <tr *ngFor="let common of comment$ | async">
-                        <td>{{ common.postId }}</td>
-                        <td>{{ common.id }}</td>
-                        <td>{{ common.name }}</td>
-                        <td>{{ common.email }}</td>
-                        <td>{{ common.body }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div> -->
 <div class="container">
   <div class="search-container mt-2 mb-1">
     <input
