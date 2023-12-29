@@ -14,7 +14,7 @@ export class LoginService {
       alert('Login Successfully!!');
       //console.log('Login Successfully!!',this.isLoggedIn)
     }
-    if (email === 'user@gmail.com' && password === 'user') {
+    if (email === 'admin@gmail.com' && password === '12345') {
       this.isLoggedIn = true;
       this.isAdmin = false;
       alert('Login Successfully!!');

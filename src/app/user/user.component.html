@@ -1,1 +1,97 @@
-<p>user works!</p>
+<div class="container">
+  <!-- <div class="selected-user" *ngIf="selectedUser">
+      <h3>Selected User:</h3>
+      <p>ID: {{ selectedUser.id }}</p>
+      <p>Name: {{ selectedUser.name }}</p>
+      <p>Email: {{ selectedUser.email }}</p>
+      <p>Phone: {{ selectedUser.phone }}</p>
+      <p>Website: {{ selectedUser.website }}</p>
+    </div> -->
+  <div class="selected-user" *ngIf="selectedUser">
+    <h3>Selected User:</h3>
+    <pre>{{ selectedUser | json }}</pre>
+  </div>
+  <div class="search-container mt-2 mb-1">
+    <!-- <div class="search-icon">
+      <button>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="home"
+      ></mat-icon>
+    </button>
+    </div>
+     -->
+    <div class="search-input-container">
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <div>
+        <input
+          class="mat-elevation-z1 search-input form-control"
+          type="text"
+          [(ngModel)]="searchText"
+          placeholder="Search...."
+          (input)="applyFilter()"
+          (blur)="clearSearch()"
+          (focus)="showDropdown()"
+        />
+      </div>
+      <div class="search-icon" *ngIf="!searchText">
+        <button><mat-icon (click)="showDropdown()">search</mat-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      *ngIf="showDropdownFlag"
+    >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+      </ng-container>
+
+      <!-- Website Column -->
+      <ng-container matColumnDef="website">
+        <th mat-header-cell *matHeaderCellDef>Website</th>
+        <td mat-cell *matCellDef="let user">{{ user.website }}</td>
+      </ng-container>
+      <!-- Company Column -->
+      <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef>Company</th>
+        <td mat-cell *matCellDef="let user">{{ user.company.name }}</td>
+      </ng-container>
+
+      <!-- Address Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let user">{{ user.address.city }}</td>
+      </ng-container>
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+
+      <!-- Phone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Phone</th>
+        <td mat-cell *matCellDef="let user">{{ user.phone }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="selectUser(row)"
+      ></tr>
+    </table>
+  </div>
+</div>

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     this.login();
   }
   login() {
-    if (this.loginService.login(this.email, this.password)) {
+    if (this.loginService.login(this?.email, this?.password)) {
       console.log('Login successful');
       this.router.navigate(['/rooms']);
     }

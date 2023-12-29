@@ -22,7 +22,12 @@ import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailvalidator/email-validator.directive';
 import { RouteConfigToken } from './services/routeConfig.service';
 import { GlobalErrorHandler } from './errorhandler.service';
-import { UserComponent } from './user/user.component';
+import { TableWithComboboxComponent } from './table-with-combobox/table-with-combobox.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 // import { RoomsModule } from './rooms/rooms.module';
 @NgModule({
   declarations: [
@@ -35,6 +40,7 @@ import { UserComponent } from './user/user.component';
     LoginComponent,
     HoverDirective,
     EmailValidatorDirective,
+    TableWithComboboxComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,10 @@ import { UserComponent } from './user/user.component';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    
     
   ],
   providers: [
