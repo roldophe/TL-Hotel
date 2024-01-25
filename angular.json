@@ -69,11 +69,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "hotelinventoryapp:build:production"
+              "buildTarget": "hotelinventoryapp:build:production"
             },
             "development": {
-              "browserTarget": "hotelinventoryapp:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "proxyConfig": "src/proxy.conf.json",
+              "buildTarget": "hotelinventoryapp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hotelinventoryapp:build"
+            "buildTarget": "hotelinventoryapp:build"
           }
         },
         "test": {
@@ -167,10 +167,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "buildTarget": "app:build:production"
             },
             "development": {
-              "browserTarget": "app:build:development"
+              "buildTarget": "app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -178,7 +178,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app:build"
+            "buildTarget": "app:build"
           }
         },
         "test": {
